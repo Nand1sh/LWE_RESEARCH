@@ -1,0 +1,17 @@
+#Loading required packages.
+library(sf)
+
+#Reading subdisticts shapefile with treatment status.
+subdistricts <- st_read("DATA/Shapefiles/S1.shp")  
+
+#Filtering for treated subdistricts.
+subdistricts_2018 <- subdistricts[subdistricts$LWE2018 == 1, ]
+
+#Unionizing treated subdistricts to get treatment polygon.
+lwe_affected_area_2018 <- st_union(subdistricts_2018$geometry)
+
+#Extracting boundary of the unionized treatment polygon.
+lwe_affected_boundary_2018 <- st_boundary(lwe_affected_area_2018)
+
+#Writing the boundary cutoff as a shapefile.
+st_write(lwe_affected_boundary_2018, "DATA/Shapefiles/S2.shp")
