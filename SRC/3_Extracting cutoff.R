@@ -13,5 +13,10 @@ lwe_affected_area_2018 <- st_union(subdistricts_2018$geometry)
 #Extracting boundary of the unionized treatment polygon.
 lwe_affected_boundary_2018 <- st_boundary(lwe_affected_area_2018)
 
+#The following chunk is commented out and should not be run.
+#This is because some manual cleaning is required to this shapefile
+#in QGIS. I have done it already and it can be read in the next
+#R script without issues.
+
 #Writing the boundary cutoff as a shapefile.
-st_write(lwe_affected_boundary_2018, "DATA/Shapefiles/S2.shp")
+# st_write(lwe_affected_boundary_2018, "DATA/Shapefiles/S2.shp")
