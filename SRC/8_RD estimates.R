@@ -98,3 +98,36 @@ z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
 srdd6 <- rdrobust(y = df$rt_2016 + df$rt_2017,
                  x = df$d2c_18,  all = TRUE, covs = z_controls)
 summary(srdd6)
+
+
+#Temmporary
+
+
+#Running statewise RDD with and without controls using all violence post 2018 as outcome.
+srdd7 <- list()
+for (i in c("BIHAR","KERALA", "ANDHRA PRADESH", "TELANGANA",
+            "UTTARPRADESH", "JHARKHAND", "CHHATISGARH",
+            "MADHYA PRADESH", "MAHARASHTRA","ODISHA")) {
+  df <- df_controls[df_controls$STATE == i, ]
+  z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
+                      df$pc18_work_share, df$pc18_rural_share,
+                      df$pc18_lit_share, df$pc18_forest_share)
+  
+  srdd7[[i]] <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021 + df$rt_2022 + df$rt_2023 +
+		df$vc_2019 + df$vc_2020 + df$vc_2021 + df$vc_2022 + df$vc_2023 +
+		df$er_2019 + df$er_2020 + df$er_2021 + df$er_2022 + df$er_2023 +
+		df$bt_2019 + df$bt_2020 + df$bt_2021 + df$bt_2022 + df$bt_2023 +
+		df$pr_2019 + df$pr_2020 + df$pr_2021 + df$pr_2022 + df$pr_2023 +
+		df$st_2019 + df$st_2020 + df$st_2021 + df$st_2022 + df$st_2023, x = df$d2c_18,  all = TRUE, covs = z_controls)
+}
+
+summary(srdd7[["ANDHRA PRADESH"]])
+summary(srdd7[["BIHAR"]])
+summary(srdd7[["CHHATISGARH"]])
+summary(srdd7[["JHARKHAND"]])
+summary(srdd7[["KERALA"]])
+summary(srdd7[["MADHYA PRADESH"]])
+summary(srdd7[["MAHARASHTRA"]])
+summary(srdd7[["ODISHA"]])
+summary(srdd7[["TELANGANA"]])
+summary(srdd7[["UTTARPRADESH"]])
