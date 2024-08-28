@@ -6,6 +6,10 @@ acled <- acled[acled$admin1 %in% c("Andhra Pradesh","Uttar Pradesh", "Bihar", "C
                                    "Jharkhand", "Madhya Pradesh", "Maharashtra",
                                    "Odisha","Telangana","West Bengal", "Kerala"), ]
 
+#Filtering for events with violence.
+#Do not run this chunk for main results.
+# acled <- acled[acled$fatalities != 0, ]
+
 #Separating violence data by event type.
 erv <- acled[acled$event_type == "Explosions/Remote violence", ]
 riots <- acled[acled$event_type == "Riots", ] 

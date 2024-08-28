@@ -1,0 +1,62 @@
+ID, Variable, Description, Type
+1, Distrct, District, string
+2, STATE, State, string
+3, TEHSIL, Subdistrict, string
+4, Shp_Lng, Length of polygon, numeric
+5, Shap_Ar, Area of polygon, numeric
+6, LWE2018, Treatment status for 2018, boolean
+7, d2c_18, Distance to cutoff, numeric
+8:15, rt_20XY, Riots for year XY, integer
+16:23, er_20XY, Explosions/Remote Violence for year XY, integer
+24:31, vc_20XY, Violence against civilians for year XY, integer
+32:39, bt_20XY, Battles for year XY, integer
+40:47, pr_20XY, Protests for year XY, integer
+48:55, st_20XY, Strategic developments for XY, integer
+56, Riots, Total riots across years, integer
+57, Vac, Total violence against civilians across years, integer
+58, Erv, Total explosions/remote violence across years, integer
+59, Battles, Total battles across years, integer
+60, Protsts, Total protests across years, integer
+61, Stratdv, Total strategic developments across years, integer
+62, pc11_tot_p, Total population in 2011 census, integer
+63, pc11_sc, Total scheduled caste population in 2011 census, integer
+64, pc11_st, Total scheduled tribe population in 2011 census, integer
+65, pc11_lit, Total literate population in 2011 census, integer
+66, pc11_work, Total working population in 2011 census, integer
+67, pc11_v_p, Total rural population in 2011 census, integer
+68, pc11_fores, Total area under forest in 2011 census, numeric
+69, pc11_v_a, Total rural area in 2011 census, numeric
+70, pc01_tot_p, Total population in 2001 census, integer
+71, pc01_sc, Total scheduled caste population in 2001 census, integer
+72, pc01_st, Total scheduled tribe population in 2001 census, integer
+73, pc01_lit, Total literate population in 2001 census, integer
+74, pc01_work, Total working population in 2001 census, integer
+75, pc01_v_p, Total rural population in 2001 census, integer
+76, pc01_fores, Total area under forest in 2001 census, numeric
+77, pc01_v_a, Total rural area in 2001 census, numeric
+78, pc11_sc_share, Total share of SC population in 2011, percentage
+79, pc11_st_share, Total share of ST population in 2011, percentage
+80, pc11_lit_share, Total share of literate population in 2011, percentage
+81, pc11_rural_share, Total share of rural population in 2011, percentage
+82, pc11_work_share, Total share of working population in 2011, percentage
+83, pc11_forest_share, Total share of forest cover in 2011, percentage
+84, pc01_sc_share, Total share of SC population in 2001, percentage
+85, pc01_st_share, Total share of ST population in 2001, percentage
+86, pc01_lit_share, Total share of literate population in 2001, percentage
+87, pc01_rural_share, Total share of rural population in 2001, percentage
+88, pc01_work_share, Total share of working population in 2001, percentage
+89, pc01_forest_share, Total share of forest cover in 2001, percentage
+90, pc18_sc_share, Total share of SC population in 2018, percentage
+91, pc18_st_share, Total share of ST population in 2018, percentage
+92, pc18_lit_share, Total share of literate population in 2018, percentage
+93, pc18_rural_share, Total share of rural population in 2018, percentage
+94, pc18_work_share, Total share of working population in 2018, percentage
+95, pc18_forest_share, Total share of forest cover in 2018, percentage
+
+
+
+
+
+
+
+
