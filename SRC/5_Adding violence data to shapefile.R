@@ -3,7 +3,7 @@ library(sf)
 library(dplyr)
 
 #Reading master shapefile.
-subdistricts <- st_read("DATA/Shapefiles/S3.shp")
+subdistricts <- st_read("DATA/Shapefiles/S4.shp")
 
 #Declaring the proj4 string of the master shapefile. This was extracted using QGIS.
 proj4 <- "+proj=lcc +lat_0=24 +lon_0=80 +lat_1=12.472944 +lat_2=35.172806 +x_0=4000000 +y_0=4000000 +datum=WGS84 +units=m +no_defs"
@@ -42,4 +42,4 @@ subdistricts <- subdistricts %>%
   mutate(Stratdev = stratdev_2016 + stratdev_2017 + stratdev_2018 + stratdev_2019 + stratdev_2020 + stratdev_2021 + stratdev_2022 + stratdev_2023)
 
 #Writing updated shapefile.
-st_write(subdistricts, "DATA/Shapefiles/S4.shp")
+st_write(subdistricts, "DATA/Shapefiles/S5.shp")

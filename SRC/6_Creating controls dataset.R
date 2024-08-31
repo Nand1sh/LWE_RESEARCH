@@ -202,4 +202,4 @@ names(controls_merged) <- c("sd_d_s", "pc11_state", "pc11_distr",
 	                    "pc01_v_p", "pc01_fores", "pc01_v_a", "geometry")
 
 #Writing shapefile for controls.
-st_write(controls_merged, "DATA/Shapefiles/S5.shp")
+st_write(controls_merged, "DATA/Shapefiles/S6.shp")

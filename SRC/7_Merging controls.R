@@ -5,10 +5,10 @@ library(DescTools)
 options(scipen=999)
 
 #Reading master shapefile.
-subdistricts <- st_read("DATA/Shapefiles/S4.shp")
+subdistricts <- st_read("DATA/Shapefiles/S5.shp")
 
 #Reading controls shapefile.
-controls_merged <- st_read("DATA/Shapefiles/S5.shp")
+controls_merged <- st_read("DATA/Shapefiles/S6.shp")
 
 #Creating unique ID.
 subdistricts <- subdistricts %>% 
@@ -98,6 +98,7 @@ df_controls <- df_controls %>%
 
 #Converting distances to kilometers.
 df_controls$d2c_18 <- df_controls$d2c_18/1000
+df_controls$d2c_21 <- df_controls$d2c_21/1000
 
 #Converting STATE column to factor.
 df_controls$STATE <- as.factor(df_controls$STATE)

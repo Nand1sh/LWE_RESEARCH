@@ -6,7 +6,7 @@ library(stargazer)
 options(scipen=999)
 
 #Reading final dataset.
-df_controls <- readRDS("DATA/df_controls.rds")
+df_controls <- read.csv("DATA/df_controls.csv")
 
 #Main RDD statewise.
 
@@ -15,9 +15,9 @@ srdd <- list()
 srdd2 <- list()
 
 #Running statewise RDD with and without controls using riots post 2018 as outcome.
-for (i in c("BIHAR","KERALA", "ANDHRA PRADESH", "TELANGANA",
-            "UTTARPRADESH", "JHARKHAND", "CHHATISGARH",
-            "MADHYA PRADESH", "MAHARASHTRA","ODISHA")) {
+for (i in c("bihar","kerala", "andhra pradesh", "telangana",
+            "uttarpradesh", "jharkhand", "chhatisgarh",
+            "madhya pradesh", "maharashtra","odisha")) {
   df <- df_controls[df_controls$STATE == i, ]
   z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
                       df$pc18_work_share, df$pc18_rural_share,
@@ -28,26 +28,26 @@ for (i in c("BIHAR","KERALA", "ANDHRA PRADESH", "TELANGANA",
 }
 
 #Reporting main results state-wise.
-summary(srdd[["ANDHRA PRADESH"]])
-summary(srdd2[["ANDHRA PRADESH"]])
-summary(srdd[["BIHAR"]])
-summary(srdd2[["BIHAR"]])
-summary(srdd[["CHHATISGARH"]])
-summary(srdd2[["CHHATISGARH"]])
-summary(srdd[["JHARKHAND"]])
-summary(srdd2[["JHARKHAND"]])
-summary(srdd[["KERALA"]])
-summary(srdd2[["KERALA"]])
-summary(srdd[["MADHYA PRADESH"]])
-summary(srdd2[["MADHYA PRADESH"]])
-summary(srdd[["MAHARASHTRA"]])
-summary(srdd2[["MAHARASHTRA"]])
-summary(srdd[["ODISHA"]])
-summary(srdd2[["ODISHA"]])
-summary(srdd[["TELANGANA"]])
-summary(srdd2[["TELANGANA"]])
-summary(srdd[["UTTARPRADESH"]])
-summary(srdd2[["UTTARPRADESH"]])
+summary(srdd[["andhra pradesh"]])
+summary(srdd2[["andhra pradesh"]])
+summary(srdd[["bihar"]])
+summary(srdd2[["bihar"]])
+summary(srdd[["chhatisgarh"]])
+summary(srdd2[["chhatisgarh"]])
+summary(srdd[["jharkhand"]])
+summary(srdd2[["jharkhand"]])
+summary(srdd[["kerala"]])
+summary(srdd2[["kerala"]])
+summary(srdd[["madhya pradesh"]])
+summary(srdd2[["madhya pradesh"]])
+summary(srdd[["maharashtra"]])
+summary(srdd2[["maharashtra"]])
+summary(srdd[["odisha"]])
+summary(srdd2[["odisha"]])
+summary(srdd[["telangana"]])
+summary(srdd2[["telangana"]])
+summary(srdd[["uttarpradesh"]])
+summary(srdd2[["uttarpradesh"]])
 
 #Running aggregate RDD with and without controls using riots post 2018 as outcome.
 
@@ -78,7 +78,7 @@ summary(srdd4)
 #Using pre 2018 riots as outcome. Only checking for CHHATISGARH and ODISHA.
 
 #CHHATISGARH
-df <- df_controls[df_controls$STATE == "CHHATISGARH", ]
+df <- df_controls[df_controls$STATE == "chhatisgarh", ]
 
 z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
                     df$pc18_work_share, df$pc18_rural_share,
@@ -89,7 +89,7 @@ srdd5 <- rdrobust(y = df$rt_2016 + df$rt_2017,
 summary(srdd5)
 
 #ODISHA
-df <- df_controls[df_controls$STATE == "ODISHA", ]
+df <- df_controls[df_controls$STATE == "odisha", ]
 
 z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
                     df$pc18_work_share, df$pc18_rural_share,
@@ -105,9 +105,9 @@ summary(srdd6)
 
 #Running statewise RDD with and without controls using all violence post 2018 as outcome.
 srdd7 <- list()
-for (i in c("BIHAR","KERALA", "ANDHRA PRADESH", "TELANGANA",
-            "UTTARPRADESH", "JHARKHAND", "CHHATISGARH",
-            "MADHYA PRADESH", "MAHARASHTRA","ODISHA")) {
+for (i in c("bihar","kerala", "andhra pradesh", "telangana",
+            "uttarpradesh", "jharkhand", "chhatisgarh",
+            "madhya pradesh", "maharashtra","odisha")) {
   df <- df_controls[df_controls$STATE == i, ]
   z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
                       df$pc18_work_share, df$pc18_rural_share,
@@ -121,13 +121,13 @@ for (i in c("BIHAR","KERALA", "ANDHRA PRADESH", "TELANGANA",
 		df$st_2019 + df$st_2020 + df$st_2021 + df$st_2022 + df$st_2023, x = df$d2c_18,  all = TRUE, covs = z_controls)
 }
 
-summary(srdd7[["ANDHRA PRADESH"]])
-summary(srdd7[["BIHAR"]])
-summary(srdd7[["CHHATISGARH"]])
-summary(srdd7[["JHARKHAND"]])
-summary(srdd7[["KERALA"]])
-summary(srdd7[["MADHYA PRADESH"]])
-summary(srdd7[["MAHARASHTRA"]])
-summary(srdd7[["ODISHA"]])
-summary(srdd7[["TELANGANA"]])
-summary(srdd7[["UTTARPRADESH"]])
+summary(srdd7[["andhra pradesh"]])
+summary(srdd7[["bihar"]])
+summary(srdd7[["chhatisgarh"]])
+summary(srdd7[["jharkhand"]])
+summary(srdd7[["kerala"]])
+summary(srdd7[["madhya pradesh"]])
+summary(srdd7[["maharashtra"]])
+summary(srdd7[["odisha"]])
+summary(srdd7[["telangana"]])
+summary(srdd7[["uttarpradesh"]])
