@@ -100,7 +100,7 @@ srdd6 <- rdrobust(y = df$rt_2016 + df$rt_2017,
 summary(srdd6)
 
 
-#Temmporary
+#Temporary
 
 
 #Running statewise RDD with and without controls using all violence post 2018 as outcome.
@@ -131,3 +131,136 @@ summary(srdd7[["maharashtra"]])
 summary(srdd7[["odisha"]])
 summary(srdd7[["telangana"]])
 summary(srdd7[["uttarpradesh"]])
+
+
+#Creating list variables to store regression results.
+srdd5 <- list()
+srdd6 <- list()
+
+#Running statewise RDD with and without controls using riots from 2019 till 2021 as outcome.
+for (i in c("bihar","kerala", "andhra pradesh", "telangana",
+            "uttarpradesh", "jharkhand", "chhatisgarh",
+            "madhya pradesh", "maharashtra","odisha")) {
+  df <- df_controls[df_controls$STATE == i, ]
+  z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
+                      df$pc18_work_share, df$pc18_rural_share,
+                      df$pc18_lit_share, df$pc18_forest_share)
+  
+  srdd5[[i]] <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021, x = df$d2c_18,  all = TRUE, covs = z_controls)
+  srdd6[[i]] <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021, x = df$d2c_18,  all = TRUE)
+}
+
+#Reporting main results state-wise.
+summary(srdd5[["andhra pradesh"]])
+summary(srdd6[["andhra pradesh"]])
+summary(srdd5[["bihar"]])
+summary(srdd6[["bihar"]])
+summary(srdd5[["chhatisgarh"]])
+summary(srdd6[["chhatisgarh"]])
+summary(srdd5[["jharkhand"]])
+summary(srdd6[["jharkhand"]])
+summary(srdd5[["kerala"]])
+summary(srdd6[["kerala"]])
+summary(srdd5[["madhya pradesh"]])
+summary(srdd6[["madhya pradesh"]])
+summary(srdd5[["maharashtra"]])
+summary(srdd6[["maharashtra"]])
+summary(srdd5[["odisha"]])
+summary(srdd6[["odisha"]])
+summary(srdd5[["telangana"]])
+summary(srdd6[["telangana"]])
+summary(srdd5[["uttarpradesh"]])
+summary(srdd6[["uttarpradesh"]])
+
+#Running aggregate RDD with and without controls using riots from 2019 till 2021 as outcome.
+
+#Copying final data into a temporary df.
+df <- df_controls
+
+#Creating matrix for state fixed effects.
+states_fe <- model.matrix(~ df$STATE - 1)
+states_fe <- states_fe[, -c(11)]
+
+#Binding all controls together.
+z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
+                    df$pc18_work_share, df$pc18_rural_share,
+                    df$pc18_lit_share, df$pc18_forest_share, states_fe)
+
+#With controls and standard errors clustered by state.
+srdd7 <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021,
+                 x = df$d2c_18,  all = TRUE, cluster = df$STATE, covs = z_controls)
+summary(srdd7)
+
+
+#Without controls but standard errors clustered by state.
+srdd8 <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021,
+                 x = df$d2c_18,  all = TRUE, cluster = df$STATE)
+summary(srdd8)
+
+#Creating list variables to store regression results.
+srdd9 <- list()
+srdd10 <- list()
+
+#Running statewise RDD with and without controls using all violence from 2019 till 2021 as outcome.
+for (i in c("bihar","kerala", "andhra pradesh", "telangana",
+            "uttarpradesh", "jharkhand", "chhatisgarh",
+            "madhya pradesh", "maharashtra","odisha")) {
+  df <- df_controls[df_controls$STATE == i, ]
+  z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
+                      df$pc18_work_share, df$pc18_rural_share,
+                      df$pc18_lit_share, df$pc18_forest_share)
+  
+  srdd9[[i]] <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021 + df$er_2019 + df$er_2020 + df$er_2021 + df$vc_2019 + df$vc_2020 + df$vc_2021 + df$bt_2019 + df$bt_2020 + df$bt_2021 + df$pr_2019 + df$pr_2020 + df$pr_2021 + df$st_2019 + df$st_2020 + df$st_2021, x = df$d2c_18,  all = TRUE, covs = z_controls)
+  srdd10[[i]] <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021 + df$er_2019 + df$er_2020 + df$er_2021 + df$vc_2019 + df$vc_2020 + df$vc_2021 + df$bt_2019 + df$bt_2020 + df$bt_2021 + df$pr_2019 + df$pr_2020 + df$pr_2021 + df$st_2019 + df$st_2020 + df$st_2021, x = df$d2c_18,  all = TRUE)
+}
+
+#Reporting main results state-wise.
+summary(srdd9[["andhra pradesh"]])
+summary(srdd10[["andhra pradesh"]])
+summary(srdd9[["bihar"]])
+summary(srdd10[["bihar"]])
+summary(srdd9[["chhatisgarh"]])
+summary(srdd10[["chhatisgarh"]])
+summary(srdd9[["jharkhand"]])
+summary(srdd10[["jharkhand"]])
+summary(srdd9[["kerala"]])
+summary(srdd10[["kerala"]])
+summary(srdd9[["madhya pradesh"]])
+summary(srdd10[["madhya pradesh"]])
+summary(srdd9[["maharashtra"]])
+summary(srdd10[["maharashtra"]])
+summary(srdd9[["odisha"]])
+summary(srdd10[["odisha"]])
+summary(srdd9[["telangana"]])
+summary(srdd10[["telangana"]])
+summary(srdd9[["uttarpradesh"]])
+summary(srdd10[["uttarpradesh"]])
+
+#Running aggregate RDD with and without controls using all violence from 2019 till 2021 as outcome.
+
+#Copying final data into a temporary df.
+df <- df_controls
+
+#Creating matrix for state fixed effects.
+states_fe <- model.matrix(~ df$STATE - 1)
+states_fe <- states_fe[, -c(11)]
+
+#Binding all controls together.
+z_controls <- cbind(df$pc18_sc_share, df$pc18_st_share,
+                    df$pc18_work_share, df$pc18_rural_share,
+                    df$pc18_lit_share, df$pc18_forest_share, states_fe)
+
+#With controls and standard errors clustered by state.
+srdd11 <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021 + df$er_2019 + df$er_2020 + df$er_2021 + df$vc_2019 + df$vc_2020 + df$vc_2021 + df$bt_2019 + df$bt_2020 + df$bt_2021 + df$pr_2019 + df$pr_2020 + df$pr_2021 + df$st_2019 + df$st_2020 + df$st_2021, x = df$d2c_18,  all = TRUE, cluster = df$STATE, covs = z_controls)
+summary(srdd11)
+
+
+#Without controls but standard errors clustered by state.
+srdd12 <- rdrobust(y = df$rt_2019 + df$rt_2020 + df$rt_2021 + df$er_2019 + df$er_2020 + df$er_2021 + df$vc_2019 + df$vc_2020 + df$vc_2021 + df$bt_2019 + df$bt_2020 + df$bt_2021 + df$pr_2019 + df$pr_2020 + df$pr_2021 + df$st_2019 + df$st_2020 + df$st_2021, x = df$d2c_18,  all = TRUE, cluster = df$STATE)
+summary(srdd12)
+
+
+
+
+
+
